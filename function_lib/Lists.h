@@ -32,22 +32,47 @@ public:
 	//	}
 	//	delete pfirst;
 	//}
-	//List(const List<T> &l) {
-	//	size = l.size;
-	//	pfirst = new Link<T>;
-	//	Link<T>* t;
-	//	t = l.pfirst;
-	//	while (t->next != l.pfirst) {
-	//		this->addlast(t->next->val);
-	//		t=t->next;
-	//	}
-	//	plast = l.plast;
-	//}
+	List(const List<T>& l) {
+		size = 0;
+		pfirst = new Link<T>;
+		pfirst->next = pfirst;
+		plast = pfirst;
+		Link<T>* t;
+		t = l.pfirst;
+		while (t->next != l.pfirst) {
+			this->addlast(t->next->val);
+			t = t->next;
+		}
+	}
 
 	List<T>& operator=(const List<T>& l) {
-		if ((pfirst == l.pfirst) && (plast == l.plast) && (size == l.size))
+		//if (this == &l)
+		//	return *this;
+		//while (pfirst->next != pfirst)
+		//{
+		//	Link<T>* t = pfirst->next;
+		//	pfirst->next = t->next;
+		//	delete t;
+		//}
+		//delete pfirst;
+		//
+		//size = 0;
+		//Link<T>* t = l.pfirst;
+		//
+		//pfirst = new Link<T>;
+		//pfirst->next = pfirst;
+		//plast = pfirst;
+		//while (t->next != l.pfirst)
+		//
+		//{
+		//	this->addlast(t->next->val);
+		//	t = t->next;
+		//}
+		//return *this;
+		if (this == &l)
 			return *this;
-		else size = l.size;
+		else
+        size = l.size;
 		Link<T>* t;
 		t = l.pfirst;
 		pfirst = t;

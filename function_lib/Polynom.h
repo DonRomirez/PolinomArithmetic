@@ -5,8 +5,9 @@ class Polynom {
 	List<MonomValue> polynom;
 public:
 	Polynom() {
-		List<MonomValue> p;
-		polynom = p;
+	}
+	Polynom(const Polynom& p) {
+		this->polynom = p.polynom;
 	}
 	void PrintPolynom() {
 		polynom.PrintL();
@@ -187,5 +188,9 @@ public:
 			else return false;
 		}
 		return true;
+	}
+	Polynom& operator=(const Polynom& p) {
+		this->polynom = p.polynom;
+		return *this;
 	}
 	};
