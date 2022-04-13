@@ -22,61 +22,48 @@ public:
 		plast = pfirst;
 		size = 0;
 	}
-	//~List()
-	//{
-	//	while (pfirst->next != pfirst)
-	//	{
-	//		Link<T>* t = pfirst->next;
-	//		pfirst->next = t->next;
-	//		delete t;
-	//	}
-	//	delete pfirst;
-	//}
+	void delfirst() {
+		if (pfirst->next == pfirst)
+			throw - 1;
+		Link<T>* p = pfirst->next;
+		pfirst->next = p->next;
+		delete p;
+		if (pfirst->next == pfirst)
+			plast = pfirst;
+	}
+	~List()
+	{
+		while (pfirst->next != pfirst)
+		{
+			delfirst();
+		}
+		delete pfirst;
+	}
 	List(const List<T>& l) {
 		size = 0;
 		pfirst = new Link<T>;
 		pfirst->next = pfirst;
 		plast = pfirst;
 		Link<T>* t;
-		t = l.pfirst;
-		while (t->next != l.pfirst) {
-			this->addlast(t->next->val);
+		t = l.pfirst->next;
+		while (t != l.pfirst) {
+			this->addlast(t->val);
 			t = t->next;
 		}
 	}
-
+	void clean() {
+		while (pfirst->next != pfirst)
+			delfirst();
+	}
 	List<T>& operator=(const List<T>& l) {
-		//if (this == &l)
-		//	return *this;
-		//while (pfirst->next != pfirst)
-		//{
-		//	Link<T>* t = pfirst->next;
-		//	pfirst->next = t->next;
-		//	delete t;
-		//}
-		//delete pfirst;
-		//
-		//size = 0;
-		//Link<T>* t = l.pfirst;
-		//
-		//pfirst = new Link<T>;
-		//pfirst->next = pfirst;
-		//plast = pfirst;
-		//while (t->next != l.pfirst)
-		//
-		//{
-		//	this->addlast(t->next->val);
-		//	t = t->next;
-		//}
-		//return *this;
 		if (this == &l)
 			return *this;
-		else
-        size = l.size;
-		Link<T>* t;
-		t = l.pfirst;
-		pfirst = t;
-		plast = l.plast;
+		clean();
+		Link<T>* t = l.pfirst->next;
+		while (t != l.pfirst) {
+			addlast(t->val);
+			t = t->next;
+		}
 		return *this;
 	}
 	int getSize() { return size; }

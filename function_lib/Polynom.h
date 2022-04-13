@@ -34,7 +34,7 @@ public:
 		else
 		polynom.add(val, index);
 	}
-	Polynom& operator+(Polynom& p) {
+	Polynom operator+(Polynom& const p) {
 		Polynom res;
 		Iterator<MonomValue> itr1(this->polynom.GetFirst()), itr2(p.polynom.GetFirst());
 		MonomValue m1 = itr1.next(), m2 = itr2.next(), empt;
@@ -79,7 +79,7 @@ public:
 		}
 		return res;
 	}
-	Polynom& operator-(Polynom& p) {
+	Polynom operator-(Polynom& const p) {
 		Polynom res;
 		Iterator<MonomValue> itr1(this->polynom.GetFirst()), itr2(p.polynom.GetFirst());
 		MonomValue m1 = itr1.next(), m2 = itr2.next(), empt, m3;
@@ -130,7 +130,7 @@ public:
 		}
 		return res;
 	}
-	Polynom& operator*(Polynom& p) {
+	Polynom operator*(Polynom& const p) {
 		Polynom res;
 		Iterator<MonomValue> itr1(this->polynom.GetFirst());
 		MonomValue m1, m2, m3;
