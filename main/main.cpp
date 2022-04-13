@@ -11,19 +11,15 @@ int main()
 		cout << str1<<endl << str2<<endl;
 		List<string> ListStrMonom1 = LexicalAnalisis(str1);
 		List<string> ListStrMonom2 = LexicalAnalisis(str2);
-		//ListStrMonom1.PrintL();
 		Polynom p1, p2, res;
 		p1 = AddPolynom(ListStrMonom1);
-		p1.PrintPolynom();
 		p2 = AddPolynom(ListStrMonom2);
-		p2.PrintPolynom();
 		res = p1 * p2;
 		cout <<"The result of multiply is: "<< res << endl;
 		res = p1 + p2;
 		cout << "The result of sum is: " << res << endl;
 		res = p1 - p2;
 		cout << "The result of subtraction is: " << res << endl;
-		res.PrintPolynom();
 		cout << ">>>\tSAMPLE\t<<<<" << endl;
 
 		

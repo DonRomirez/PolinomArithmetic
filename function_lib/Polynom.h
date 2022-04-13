@@ -15,12 +15,28 @@ public:
 	int GetSize() {
 		return polynom.getSize();
 	}
+	void AddLast(MonomValue val) {
+		if (val.a == 0)
+			return;
+		Link<MonomValue>* t = polynom.GetFirst();
+		if (t->next == polynom.GetFirst()) {
+			polynom.addfirst(val);
+			return;
+		}
+		if (t->next->val == val) {
+			t->next->val.a += val.a;
+			return;
+		}
+		else
+			polynom.addlast(val);
+
+	}
 	void AddMonom(MonomValue val) {
 		if (val.a == 0)
 			return;
 		Link<MonomValue>* t = polynom.GetFirst();
 		if (t->next == polynom.GetFirst()) {
-			polynom.add(val, 0);
+			polynom.addfirst(val);
 			return;
 		}
 		int index = 0;
@@ -40,25 +56,25 @@ public:
 		MonomValue m1 = itr1.next(), m2 = itr2.next(), empt;
 		while (true) {
 			if ((m1.a == 0) && (m2.a != 0)) {
-			res.AddMonom(m2);
+			res.AddLast(m2);
 			if (itr2.hasNext())
 				m2 = itr2.next();
 			else m2 = empt;
 		}
 			if ((m2.a == 0) && (m1.a != 0)) {
-				res.AddMonom(m1);
+				res.AddLast(m1);
 				if (itr1.hasNext())
 					m1 = itr1.next();
 				else m1 = empt;
 			}
 			if (m1 < m2) {
-				res.AddMonom(m1);
+				res.AddLast(m1);
 				if (itr1.hasNext())
 					m1 = itr1.next();
 				else m1 = empt;
 			}
 			if (m2 < m1) {
-				res.AddMonom(m2);
+				res.AddLast(m2);
 				if (itr2.hasNext())
 					m2 = itr2.next();
 				else m2 = empt;
@@ -74,7 +90,7 @@ public:
 				if (itr2.hasNext())
 					m2 = itr2.next();
 				else m2 = empt;
-				res.AddMonom(m3);
+				res.AddLast(m3);
 			}
 		}
 		return res;
@@ -87,21 +103,21 @@ public:
 			if ((m1.a == 0) && (m2.a != 0)) {
 				m3 = m2;
 				m3.a = -m3.a;
-				res.AddMonom(m3);
+				res.AddLast(m3);
 				if (itr2.hasNext())
 					m2 = itr2.next();
 				else m2 = empt;
 			}
 			if ((m2.a == 0) && (m1.a != 0)) {
 				m3 = m1;
-				res.AddMonom(m3);
+				res.AddLast(m3);
 				if (itr1.hasNext())
 					m1 = itr1.next();
 				else m1 = empt;
 			}
 			if (m1 < m2) {
 				m3 = m1;
-				res.AddMonom(m3);
+				res.AddLast(m3);
 				if (itr1.hasNext())
 					m1 = itr1.next();
 				else m1 = empt;
@@ -109,7 +125,7 @@ public:
 			if (m2 < m1) {
 				m3 = m2;
 				m3.a = -m3.a;
-				res.AddMonom(m3);
+				res.AddLast(m3);
 				if (itr2.hasNext())
 					m2 = itr2.next();
 				else m2 = empt;
@@ -125,7 +141,7 @@ public:
 				if (itr2.hasNext())
 					m2 = itr2.next();
 				else m2 = empt;
-				res.AddMonom(m3);
+				res.AddLast(m3);
 			}
 		}
 		return res;
