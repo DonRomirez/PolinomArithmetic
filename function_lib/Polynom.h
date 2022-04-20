@@ -18,7 +18,7 @@ public:
 	void AddLast(MonomValue val) {
 		if (val.a == 0)
 			return;
-		Link<MonomValue>* t = polynom.GetFirst();
+		Link<MonomValue>* t = polynom.GetLast();
 		if (t->next == polynom.GetFirst()) {
 			polynom.addfirst(val);
 			return;
